@@ -70,35 +70,35 @@ venv.bak/
 
 # Node
 /owl_model_app/node_modules
-/owl_model_appnpm-debug.log
-/owl_model_appyarn-error.log
+/owl_model_app/npm-debug.log
+/owl_model_app/yarn-error.log
 
 # IDEs and editors
-/owl_model_app.idea/
-/owl_model_app.project
-/owl_model_app.classpath
-/owl_model_app.c9/
-/owl_model_app*.launch
-/owl_model_app.settings/
-/owl_model_app*.sublime-workspace
+/owl_model_app/.idea/
+/owl_model_app/.project
+/owl_model_app/.classpath
+/owl_model_app/.c9/
+/owl_model_app/*.launch
+/owl_model_app/.settings/
+/owl_model_app/*.sublime-workspace
 
 # Visual Studio Code
-/owl_model_app.vscode/*
+/owl_model_app/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-/owl_model_app.history/*
+/owl_model_app/.history/*
 
 # Miscellaneous
 /owl_model_app/.angular/cache
-/owl_model_app.sass-cache/
+/owl_model_app/.sass-cache/
 /owl_model_app/connect.lock
 /owl_model_app/coverage
 /owl_model_app/libpeerconnection.log
-/owl_model_apptestem.log
+/owl_model_app/testem.log
 /owl_model_app/typings
 
 # System files
-/owl_model_app.DS_Store
-/owl_model_appThumbs.db
+/owl_model_app/.DS_Store
+/owl_model_app/Thumbs.db
