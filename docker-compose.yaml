@@ -1,0 +1,49 @@
+# We are setting up 2 services: api and db
+services:
+
+  ##################################################################
+  # configure the sql-server container
+  sql-server:
+    container_name: ${MSSQL_SERVER}
+    build: ./db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    env_file:
+      - .env
+    volumes:
+      - mssql_data:/var/opt/mssql
+      - ./data:/data/:ro
+    restart: unless-stopped
+  
+  ##################################################################
+  # configure the api container
+  api:
+    # Set up the api according to the Dockerfile inside the owl_model_api/ folder
+    build: ./owl_model_api
+    container_name: owl_model_api
+    # have the container restart if it fails for some reason. 
+    restart: unless-stopped  
+    env_file:
+      - .env
+    depends_on:
+      - sql-server
+    # map host port 8000 to container port 8000 
+    ports:
+      - "8000:80"
+
+  app:
+    build: ./owl_model_app
+    container_name: owl_model_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "4200:4200"
+
+volumes:
+  mssql_data:

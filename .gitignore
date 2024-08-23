@@ -1,0 +1,104 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+
+.idea/*
+
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/owl_model_app/dist
+/owl_model_app/tmp
+/owl_model_app/out-tsc
+/owl_model_app/bazel-out
+
+# Node
+/owl_model_app/node_modules
+/owl_model_appnpm-debug.log
+/owl_model_appyarn-error.log
+
+# IDEs and editors
+/owl_model_app.idea/
+/owl_model_app.project
+/owl_model_app.classpath
+/owl_model_app.c9/
+/owl_model_app*.launch
+/owl_model_app.settings/
+/owl_model_app*.sublime-workspace
+
+# Visual Studio Code
+/owl_model_app.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+/owl_model_app.history/*
+
+# Miscellaneous
+/owl_model_app/.angular/cache
+/owl_model_app.sass-cache/
+/owl_model_app/connect.lock
+/owl_model_app/coverage
+/owl_model_app/libpeerconnection.log
+/owl_model_apptestem.log
+/owl_model_app/typings
+
+# System files
+/owl_model_app.DS_Store
+/owl_model_appThumbs.db
