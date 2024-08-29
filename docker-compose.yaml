@@ -19,6 +19,8 @@ services:
       - mssql_data:/var/opt/mssql
       - ./data:/data/:ro
     restart: unless-stopped
+    networks:
+      - owl_model_network
   
   ##################################################################
   # configure the api container
@@ -32,9 +34,11 @@ services:
       - .env
     depends_on:
       - sql-server
-    # map host port 8000 to container port 8000 
+    # map host port 8000 to container port 80
     ports:
       - "8000:80"
+    networks:
+      - owl_model_network
 
   app:
     build: ./owl_model_app
@@ -44,6 +48,10 @@ services:
       - .env
     ports:
       - "4200:4200"
+    networks:
+      - owl_model_network
+networks:
+  owl_model_network:
 
 volumes:
   mssql_data:

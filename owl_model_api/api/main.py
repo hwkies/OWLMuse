@@ -1,8 +1,23 @@
 from fastapi import FastAPI
 import os
 import pymssql
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:4200",  # Angular development server
+    "http://localhost:80",  # If you access the API directly
+    # Add any other origins you might need
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db_connection():
     server = os.getenv('MSSQL_SERVER')
@@ -17,6 +32,27 @@ def get_db_connection():
         database=database       # This should match MSSQL_DB from your environment file
     )
     return conn
+
+def row_to_dict(row):
+    return {
+        "player": row[0],
+        "maps": row[1],
+        "map_wins": row[2],
+        "map_win_rate" : row[3],
+        "matches": row[4],
+        "match_wins": row[5],
+        "match_win_rate": row[6]
+    }
+
+@app.get("/api/player_win_rates")
+def get_player_win_rates():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM dbo.Player_Win_Rates")
+    rows = cursor.fetchall()
+    data = list(map(row_to_dict, rows))
+    conn.close()
+    return data
 
 @app.get("/")
 def root():

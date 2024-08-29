@@ -362,7 +362,16 @@ WITH (
 GO
 
 BULK INSERT dbo.PHS_2021
-FROM '/data/phs_2021.csv'
+FROM '/data/phs_2021_1.csv'
+WITH (
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    FIRSTROW = 2
+);
+GO
+
+BULK INSERT dbo.PHS_2021
+FROM '/data/phs_2021_2.csv'
 WITH (
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
@@ -371,7 +380,16 @@ WITH (
 GO
 
 BULK INSERT dbo.PHS_2022
-FROM '/data/phs_2022.csv'
+FROM '/data/phs_2022_1.csv'
+WITH (
+    FIELDTERMINATOR = ',',
+    ROWTERMINATOR = '\n',
+    FIRSTROW = 2
+);
+GO
+
+BULK INSERT dbo.PHS_2022
+FROM '/data/phs_2022_2.csv'
 WITH (
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',

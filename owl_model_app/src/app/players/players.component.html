@@ -1,0 +1,11 @@
+<div *ngIf="players.length; else noPlayers">
+    <ul>
+      <li *ngFor="let player of players">
+        Name: {{ player.player }}, Map Win Rate: {{ player.map_win_rate*100 }}%, Match Win Rate: {{ player.match_win_rate*100 }}%
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noPlayers>
+    <p>No players found.</p>
+  </ng-template>
