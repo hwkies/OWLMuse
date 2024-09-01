@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiRoute: 'http://owl_model_api/api/'
+  clientApiUrl: 'http://localhost:8000/api/',
+  serverApiUrl: 'http://owl_model_api:8000/api/',
 };

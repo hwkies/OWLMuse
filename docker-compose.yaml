@@ -36,7 +36,7 @@ services:
       - sql-server
     # map host port 8000 to container port 80
     ports:
-      - "8000:80"
+      - "8000:8000"
     networks:
       - owl_model_network
 

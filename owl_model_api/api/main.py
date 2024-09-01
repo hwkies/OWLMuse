@@ -7,8 +7,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:4200",  # Angular development server
-    "http://localhost:80",  # If you access the API directly
-    # Add any other origins you might need
+    "http://localhost:8000",  # If you access the API directly
 ]
 
 app.add_middleware(

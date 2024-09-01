@@ -5,6 +5,7 @@ import { IPlayer } from "./player";
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-players',
@@ -18,22 +19,25 @@ export class PlayersComponent implements OnInit {
   errorMessage : string = '';
   players : IPlayer[] = [];
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private playersService: PlayersService) {
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService,
+    private playersService: PlayersService
+  ) {}
 
   ngOnInit(): void {
     this.getPlayers();
   }
 
   getPlayers(): void {
-    this.playersService.getPlayerWinRates().subscribe({
+    this.apiService.get<IPlayer[]>("player_win_rates").subscribe({
       next: players => {
         this.players = players;
       },
       error: err => {
         this.errorMessage = err;
+        console.error(this.errorMessage);
       }
     });
   }

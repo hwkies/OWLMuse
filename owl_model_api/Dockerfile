@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir --upgrade -r /owl_model_api/requirements.txt
 COPY ./api /owl_model_api/api
 
 # 
-CMD ["fastapi", "run", "api/main.py", "--port", "80"]
+CMD ["fastapi", "run", "api/main.py", "--port", "8000"]

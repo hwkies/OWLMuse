@@ -1,0 +1,35 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.navbar {
+    left: 0;
+    top: 0;
+    background-color: #177df3;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    padding: 10px;
+  }
+
+.nav-link {
+    color: #0d37f1;
+    text-decoration: none;
+    background-color: #68aaf7;
+    border-radius: 5px;
+    padding: 3px;
+  }
+
+.nav-link.home {
+    margin-right: 2px;
+}
+
+.nav-link.players {
+    margin-left: 2px;
+}
+
+.nav-link:hover {
+    background-color: #0d37f1;
+    color: #68aaf7;
+  }
