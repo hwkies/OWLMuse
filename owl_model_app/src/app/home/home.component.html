@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div>
+    <h1>Welcome to OWLMuse!</h1>
+    <h2>Your home for Overwatch League insights</h2>
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+    <div id="twitch-embed"></div>
+    <script type="text/javascript">
+        var options = {
+        width: 1280,
+        height: 720,
+        autoplay: false,
+        channel: "ow_esports"
+        };
+        var player = new Twitch.Player("twitch-embed", options);
+        player.setVolume(0.5);
+    </script>
+</div>
+

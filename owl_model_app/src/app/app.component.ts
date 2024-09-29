@@ -7,11 +7,12 @@ import { TuiButton, tuiButtonOptionsProvider } from '@taiga-ui/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {TuiButtonClose} from '@taiga-ui/kit';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, TuiRoot, MatToolbarModule, RouterModule, TuiButton, MatIconModule, MatSidenavModule, TuiButtonClose],
+  imports: [RouterOutlet, RouterModule, TuiRoot, MatToolbarModule, RouterModule, TuiButton, MatIconModule, MatSidenavModule, TuiButtonClose, MatListModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [tuiButtonOptionsProvider({size: 'm'})],

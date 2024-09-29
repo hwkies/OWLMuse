@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home'
+    title: 'OwlMuse'
   },
   {
     path: 'players',
