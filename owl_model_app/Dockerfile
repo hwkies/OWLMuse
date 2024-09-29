@@ -9,4 +9,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD if [ "$ENV" = "production" ]; then \
+    ng serve --configuration=production --host 0.0.0.0; \
+else \
+    ng serve --host 0.0.0.0; \
+fi
