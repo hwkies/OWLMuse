@@ -2,19 +2,19 @@
 
 # Wait for SQL Server to start
 echo "Waiting for SQL Server to start..."
-until /opt/mssql-tools18/bin/sqlcmd -S 127.0.0.1,1433 -U "${MSSQL_ADMIN}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT 1" -C &> /dev/null
+until /opt/mssql-tools18/bin/sqlcmd -S localhost,1433 -U "${MSSQL_ADMIN}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT 1" -C &> /dev/null
 do
     sleep 1
 done
 
-DB_CHECK=$(/opt/mssql-tools18/bin/sqlcmd -S 127.0.0.1,1433 -U "${MSSQL_ADMIN}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT COUNT(*) FROM sys.databases WHERE name='${MSSQL_DB}'" -C -h -1 -W | grep -o '^[0-9]\+$')
+DB_CHECK=$(/opt/mssql-tools18/bin/sqlcmd -S localhost,1433 -U "${MSSQL_ADMIN}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT COUNT(*) FROM sys.databases WHERE name='${MSSQL_DB}'" -C -h -1 -W | grep -o '^[0-9]\+$')
 
 if [ "$DB_CHECK" -eq 1 ]; then
     DB_READY=0
     while [ $DB_READY -ne 1 ]
     do
         echo "Checking database recovery status..."
-        RECOVERY_STATUS=$(/opt/mssql-tools18/bin/sqlcmd -S 127.0.0.1,1433 -U "${MSSQL_ADMIN}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT state_desc FROM sys.databases WHERE name='${MSSQL_DB}'" -C -h -1 | grep -oP '^\w+' | head -1)
+        RECOVERY_STATUS=$(/opt/mssql-tools18/bin/sqlcmd -S localhost,1433 -U "${MSSQL_ADMIN}" -P "${MSSQL_SA_PASSWORD}" -Q "SELECT state_desc FROM sys.databases WHERE name='${MSSQL_DB}'" -C -h -1 | grep -oP '^\w+' | head -1)
       
         if [[ "$RECOVERY_STATUS" == "ONLINE" ]]; then
             DB_READY=1

@@ -23,6 +23,7 @@ export class ApiService {
     }
   }
 
+  // getter for the apiUrl which will change depending on if the ApiService is instantiated client or server side
   getApiUrl(): string {
     return this.apiUrl;
   }

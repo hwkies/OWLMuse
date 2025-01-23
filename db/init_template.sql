@@ -15,6 +15,7 @@ IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = '$(MSSQL_USER)
 BEGIN
     CREATE USER $(MSSQL_USER) FOR LOGIN $(MSSQL_LOGIN);
     EXEC sp_addrolemember 'db_datareader', '$(MSSQL_USER)';
+    EXEC sp_addrolemember 'db_datawriter', '$(MSSQL_USER)';
 END
 GO
 
@@ -22,15 +23,14 @@ GO
 IF OBJECT_ID('dbo.Users', 'U') IS NULL
 BEGIN
     CREATE TABLE dbo.Users (
-        [Id] INT PRIMARY KEY IDENTITY(1,1),
-        [Username] [varchar](200) NOT NULL,
+        [Username] [varchar](200) PRIMARY KEY NOT NULL,
         [Email] [varchar](200) NOT NULL,
         [Password] [varchar](200) NOT NULL,
-        [Role] [varchar](50) NOT NULL,
-        [CreatedAt] [datetime] DEFAULT GETDATE()
+        [CreatedAt] [datetime] DEFAULT GETDATE(),
+        CONSTRAINT [UQ_Username] UNIQUE ([Username])
     );
 
-    INSERT INTO dbo.Users (Username, Email, Password, Role) VALUES ('Admin', 'Admin@Admin.com', 'Admin123', 'Admin');
+    INSERT INTO dbo.Users (Username, Email, Password) VALUES ('Admin', 'Admin@Admin.com', 'Admin123');
 END
 GO
 
@@ -399,8 +399,9 @@ BEGIN
         FIRSTROW = 2
     );
 END
+GO
 
-IF OBJECT_ID('dbo.Player_Win_Rates', 'U') IS NOT NULL
+IF OBJECT_ID('dbo.Player_Win_Rates', 'U') IS NULL
 BEGIN
     CREATE TABLE [dbo].[Player_Win_Rates](
         [PLAYER] [varchar](200) NULL,
@@ -411,7 +412,6 @@ BEGIN
         [MATCH_WINS] [int] NULL,
         [MATCH_WIN_RATE] [decimal](25, 8) NULL
     ) ON [PRIMARY]
-
     BULK INSERT dbo.Player_Win_Rates
     FROM '/data/player_win_rates.csv'
     WITH (

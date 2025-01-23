@@ -18,5 +18,5 @@ import {MatListModule} from '@angular/material/list';
   providers: [tuiButtonOptionsProvider({size: 'm'})],
 })
 export class AppComponent {
-  title = 'owl_model_app';
+  title = 'client';
 }

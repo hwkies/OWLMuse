@@ -63,42 +63,42 @@ venv.bak/
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/owl_model_app/dist
-/owl_model_app/tmp
-/owl_model_app/out-tsc
-/owl_model_app/bazel-out
+/client/dist
+/client/tmp
+/client/out-tsc
+/client/bazel-out
 
 # Node
-/owl_model_app/node_modules
-/owl_model_app/npm-debug.log
-/owl_model_app/yarn-error.log
+/client/node_modules
+/client/npm-debug.log
+/client/yarn-error.log
 
 # IDEs and editors
-/owl_model_app/.idea/
-/owl_model_app/.project
-/owl_model_app/.classpath
-/owl_model_app/.c9/
-/owl_model_app/*.launch
-/owl_model_app/.settings/
-/owl_model_app/*.sublime-workspace
+/client/.idea/
+/client/.project
+/client/.classpath
+/client/.c9/
+/client/*.launch
+/client/.settings/
+/client/*.sublime-workspace
 
 # Visual Studio Code
-/owl_model_app/.vscode/*
+/client/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-/owl_model_app/.history/*
+/client/.history/*
 
 # Miscellaneous
-/owl_model_app/.angular/cache
-/owl_model_app/.sass-cache/
-/owl_model_app/connect.lock
-/owl_model_app/coverage
-/owl_model_app/libpeerconnection.log
-/owl_model_app/testem.log
-/owl_model_app/typings
+/client/.angular/cache
+/client/.sass-cache/
+/client/connect.lock
+/client/coverage
+/client/libpeerconnection.log
+/client/testem.log
+/client/typings
 
 # System files
-/owl_model_app/.DS_Store
-/owl_model_app/Thumbs.db
+/client/.DS_Store
+/client/Thumbs.db

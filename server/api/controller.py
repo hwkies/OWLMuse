@@ -18,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def get_db_connection():
+def get_db_connection() -> pymssql.Connection:
     server = os.getenv('MSSQL_SERVER')
     database = os.getenv('MSSQL_DB')
     username = os.getenv('MSSQL_LOGIN')

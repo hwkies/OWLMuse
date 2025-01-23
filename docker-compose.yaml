@@ -24,9 +24,9 @@ services:
   ##################################################################
   # configure the api container
   api:
-    # Set up the api according to the Dockerfile inside the owl_model_api/ folder
-    build: ./owl_model_api
-    container_name: owl_model_api
+    # Set up the api according to the Dockerfile inside the server/ folder
+    build: ./server
+    container_name: server
     # have the container restart if it fails for some reason. 
     restart: unless-stopped  
     env_file:
@@ -39,9 +39,9 @@ services:
     networks:
       - owl_model_network
 
-  appDev:
-    build: ./owl_model_app
-    container_name: owl_model_app
+  devapp:
+    build: ./client
+    container_name: client_dev
     restart: unless-stopped
     environment:
       - ENV=development
@@ -53,9 +53,9 @@ services:
       - owl_model_network
     profiles: ["dev"]
 
-  appProd:
-    build: ./owl_model_app
-    container_name: owl_model_app
+  prodapp:
+    build: ./client
+    container_name: client_prod
     restart: unless-stopped
     environment:
       - ENV=production
