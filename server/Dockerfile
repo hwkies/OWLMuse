@@ -1,5 +1,5 @@
 # 
-FROM python:3.9
+FROM python:3.11
 
 # 
 WORKDIR /server
@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir --upgrade -r /server/requirements.txt
 COPY ./api /server/api
 
 # 
-CMD ["fastapi", "run", "api/controller.py", "--port", "8000"]
+CMD ["fastapi", "run", "api/main.py", "--port", "8000"]

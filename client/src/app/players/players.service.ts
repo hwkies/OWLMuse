@@ -13,6 +13,5 @@ export class PlayersService {
 
   constructor(private http: HttpClient, private apiService: ApiService) {
     this.apiUrl = apiService.getApiUrl();
-    console.log(this.apiUrl);
    }
 }
