@@ -1,3 +1,6 @@
 fastapi[standard]
 pymssql
 pytest
+sqlmodel
+kagglehub
+pandas

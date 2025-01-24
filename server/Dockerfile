@@ -8,13 +8,18 @@ WORKDIR /server
 COPY ./requirements.txt /server/requirements.txt
 
 # 
-RUN apt-get update && apt-get install freetds-dev -y
+RUN apt-get update && \
+apt-get install -y --no-install-recommends freetds-dev && \
+apt-get clean && \
+rm -rf /var/lib/apt/lists/*
 
 #
 RUN pip install --no-cache-dir --upgrade -r /server/requirements.txt
 
 # 
-COPY ./api /server/api
+COPY ./ /server
+
+RUN python -c "import sqlite3; print('SQLite is ready to use!')"
 
 # 
-CMD ["fastapi", "run", "api/main.py", "--port", "8000"]
+CMD ["fastapi", "run", "main.py", "--port", "8000"]

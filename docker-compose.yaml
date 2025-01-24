@@ -1,29 +1,8 @@
 services:
 
   ##################################################################
-  # configure the sql-server container
-  sql-server:
-    container_name: ${MSSQL_SERVER}
-    build: ./db
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    ports:
-      - "1433:1433"
-    environment:
-      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Developer"
-    env_file:
-      - .env
-    volumes:
-      - mssql_data:/var/opt/mssql
-      - ./data:/data/:ro
-    restart: unless-stopped
-    networks:
-      - owl_model_network
-  
-  ##################################################################
-  # configure the api container
-  api:
+  # configure the server container
+  server:
     # Set up the api according to the Dockerfile inside the server/ folder
     build: ./server
     container_name: server
@@ -31,13 +10,11 @@ services:
     restart: unless-stopped  
     env_file:
       - .env
-    depends_on:
-      - sql-server
     # map host port 8000 to container port 80
     ports:
       - "8000:8000"
     networks:
-      - owl_model_network
+      - owlmuse_network
 
   devapp:
     build: ./client
@@ -50,7 +27,7 @@ services:
     ports:
       - "4200:4200"
     networks:
-      - owl_model_network
+      - owlmuse_network
     profiles: ["dev"]
 
   prodapp:
@@ -64,12 +41,9 @@ services:
     ports:
       - "4200:4200"
     networks:
-      - owl_model_network
+      - owlmuse_network
     profiles: ["prod"]
 
 
 networks:
-  owl_model_network:
-
-volumes:
-  mssql_data:
+  owlmuse_network:
