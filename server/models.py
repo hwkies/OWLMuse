@@ -2,11 +2,28 @@ from typing import Optional
 from datetime import datetime
 from sqlmodel import SQLModel, Field
 
-class User(SQLModel, table=True):
-    username: str = Field(primary_key=True)
+class UserBase(SQLModel):
+    username: str
     email: str
+
+class User(UserBase, table=True):
+    username: str = Field(primary_key=True)
     password: str
-    created_at: Optional[datetime]
+    created_at: datetime
+
+class UserPublic(UserBase):
+    created_at: datetime
+
+class UserCreate(UserBase):
+    password: str
+
+class UserUpdate(UserBase):
+    email: str | None = None
+    password: str | None = None
+
+class UserCredentials(SQLModel):
+    username: str
+    password: str
 
 class PlayerHero(SQLModel, table=True):
     uuid: Optional[int] = Field(default=None, primary_key=True)
