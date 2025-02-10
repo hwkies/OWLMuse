@@ -1,10 +1,7 @@
 import pytest
 from datetime import datetime
-from fastapi.testclient import TestClient
 from sqlmodel import create_engine, Session, SQLModel
 from sqlmodel.pool import StaticPool
-from server.db.db import get_session
-from server.main import app
 from server.services import UserService
 from server import models
 

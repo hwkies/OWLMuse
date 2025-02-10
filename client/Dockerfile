@@ -1,16 +1,21 @@
-FROM node:alpine
+FROM node:20-alpine
 
 RUN mkdir /project
 WORKDIR /project
 
-RUN npm install -g @angular/cli@13
+COPY package*.json ./
 
-COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
 COPY . .
-CMD if [ "$ENV" = "production" ]; then \
-    ng serve --configuration=production --host 0.0.0.0; \
-else \
-    ng serve --host 0.0.0.0; \
-fi
+
+RUN npm run build
+
+EXPOSE 3000
+    
+CMD ["npm", "start"]
+# CMD if [ "$ENV" = "production" ]; then \
+#     ng serve --configuration=production --host 0.0.0.0; \
+# else \
+#     ng serve --host 0.0.0.0; \
+# fi
