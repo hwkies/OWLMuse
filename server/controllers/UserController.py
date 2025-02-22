@@ -40,7 +40,7 @@ def update_user(user_update: UserUpdate, session: SessionDep):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f'Error updating user: {str(e)}')
     
-@router.delete("/delete_user/{username}")
+@router.delete("/delete_user/{username}", response_model=UserPublic)
 def delete_user(username: str, session: SessionDep):
     try:
         return UserService.delete_user(username, session)
