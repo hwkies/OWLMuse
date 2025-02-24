@@ -10,16 +10,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        "background": "var(--background)",
-        "foreground": "var(--foreground)",
         "primary": "var(--primary)",
-        "secondary": "var(--secondary)",
-        "accent": "var(--accent)",
-        "background-dark": "var(--background-dark)",
-        "foreground-dark": "var(--foreground-dark)",
+        "background": "var(--background)",
         "primary-dark": "var(--primary-dark)",
-        "secondary-dark": "var(--secondary-dark)",
-        "accent-dark": "var(--accent-dark)",
+        "background-dark": "var(--background-dark)",
       },
     },
   },
