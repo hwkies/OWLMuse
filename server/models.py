@@ -25,7 +25,7 @@ class UserCredentials(SQLModel):
     username: str
     password: str
 
-class PlayerHero(SQLModel, table=True):
+class Hero(SQLModel, table=True):
     uuid: Optional[int] = Field(default=None, primary_key=True)
     map_type: str
     map_name: str
@@ -41,7 +41,7 @@ class PlayerHero(SQLModel, table=True):
     opponent: str
     opponent_classification: int
 
-class PlayerMap(SQLModel, table=True):
+class PHS(SQLModel, table=True):
     uuid: Optional[int] = Field(default=None, primary_key=True)
     start_time: datetime
     match_id: int

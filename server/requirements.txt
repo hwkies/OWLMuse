@@ -5,3 +5,4 @@ pytest-mock
 sqlmodel
 kagglehub
 pandas
+transformers

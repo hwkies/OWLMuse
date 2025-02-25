@@ -4,11 +4,14 @@ import pandas as pd
 from typing import Annotated
 from fastapi import Depends
 from sqlmodel import create_engine, Session
+from transformers import AutoTokenizer, AutoModelForTableQuestionAnswering
 
 path = kagglehub.dataset_download('kiesmanh/owlmuse')
 
 SQLITE_URL = 'sqlite:///db/owlmuse.sqlite'
 engine = create_engine(SQLITE_URL)
+TOKENIZER = AutoTokenizer.from_pretrained("google/tapas-large-finetuned-wikisql-supervised")
+MODEL = AutoModelForTableQuestionAnswering.from_pretrained("google/tapas-large-finetuned-wikisql-supervised")
 
 def get_session():
     with Session(engine) as session:
@@ -16,19 +19,15 @@ def get_session():
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
-def load_csv_to_table(file_name: str, df: pd.DataFrame, engine):
-    if file_name.startswith('hero'):
-        df.to_sql('playerhero', con=engine, if_exists='append', index=False)
-    elif file_name.startswith('phs'):
-        df.to_sql('playermap', con=engine, if_exists='append', index=False)
-    elif file_name.startswith('match'):
-        df.to_sql('map', con=engine, if_exists='replace', index=False)
-    elif file_name.startswith('player'):
-        df.to_sql('player', con=engine, if_exists='replace', index=False)
-
 def initialize():
+    tables = {'hero': pd.DataFrame(), 'phs': pd.DataFrame(), 'map': pd.DataFrame(), 'player': pd.DataFrame()}
     csv_files = glob.glob(path + '/*.csv')
     for file in csv_files:
         df = pd.read_csv(file)
         file_name = file.split('\\')[-1]
-        load_csv_to_table(file_name, df, engine)
+        file_start_word = file_name.split('_')[0]
+        if file_start_word in tables.keys():
+            tables[file_start_word] = pd.concat(tables[file_start_word], df)
+    for tablename in tables.keys():
+        tables[tablename].to_sql(tablename, con=engine, if_exists='replace', index=False)
+    return tuple(tables.values())
