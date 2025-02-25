@@ -2,6 +2,7 @@ import * as React from "react"
 import { Input } from "@chakra-ui/react"
 import Link from "next/link"
 import CustomLink from "@/components/ui/custom-link";
+import CustomInput from "@/components/ui/custom-input"
 import { ColorModeButton } from "@/components/ui/color-mode"
 
 const NavBar = () => {
@@ -15,9 +16,9 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="justify-self-center min-w-full">
-        <Input 
+        <CustomInput 
           placeholder="Search for overwatch statistics" 
-          className="px-3 rounded-2xl border-2 border-primary dark:border-primary-dark text-background-dark dark:text-background" />
+          className="rounded-2xl" />
       </div>
       <div className="justify-self-end flex justify-around items-center">
         <CustomLink 
