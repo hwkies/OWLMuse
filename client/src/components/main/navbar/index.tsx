@@ -1,5 +1,5 @@
+"use client";
 import * as React from "react"
-import { Input } from "@chakra-ui/react"
 import Link from "next/link"
 import CustomLink from "@/components/ui/custom-link";
 import CustomInput from "@/components/ui/custom-input"
@@ -18,17 +18,21 @@ const NavBar = () => {
       <div className="justify-self-center min-w-full">
         <CustomInput 
           placeholder="Search for overwatch statistics" 
-          className="rounded-2xl" />
+          className="rounded-2xl"
+          onChange={() => {}}
+        />
       </div>
       <div className="justify-self-end flex justify-around items-center">
         <CustomLink 
           href="/login" 
-          className="font-semibold px-3 py-1 rounded-lg text-xl mr-1">
+          className="font-semibold px-3 py-1 rounded-lg text-xl mr-1"
+        >
           Log In
         </CustomLink>
         <CustomLink 
           href="/signup" 
-          className="font-semibold px-3 py-1 rounded-lg text-xl ml-1">
+          className="font-semibold px-3 py-1 rounded-lg text-xl ml-1"
+        >
           Sign Up
         </CustomLink>
         <ColorModeButton className="ml-2" />

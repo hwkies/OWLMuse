@@ -4,7 +4,7 @@ from server.db.db import SessionDep
 from server.models import UserPublic, UserCreate, UserCredentials, UserUpdate
 
 router = APIRouter(
-    prefix='/api/user'
+    prefix='/api/users'
 )
 
 @router.get("/get_user/{username}", response_model=UserPublic)

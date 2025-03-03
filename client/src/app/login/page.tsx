@@ -24,7 +24,8 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h2 className="text-2xl">Welcome to OWLMuse!</h2>
       <h3>Please login to continue.</h3>
-      <form className="flex flex-col items-left">
+      {err && <p className="text-red-500">{err}</p>}
+      <form className="flex flex-col items-left" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username</label>
           <CustomInput
@@ -51,7 +52,7 @@ const Login = () => {
       <div className="flex flex-col items-center">
         <div>
           <label htmlFor='showPasswordToggle'>{showPassword ? "Hide Password" : "Show Password"}</label>
-          <input id='showPasswordToggle' type='checkbox' value={showPassword} onClick={togglePasswordVisibility} className="ml-2" />
+          <input id='showPasswordToggle' type='checkbox' onClick={togglePasswordVisibility} className="ml-2" />
         </div>
         <button type="submit" className="text-xl border-2 rounded-lg px-2">
           Login

@@ -1,19 +1,20 @@
-import { Input } from "@chakra-ui/react"
+"use client";
+import { Input } from "@chakra-ui/react";
 
-interface CustomInputProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  type: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required: boolean;
+interface CustomInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   className?: string;
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs";
 }
 
-export default function CustomInput({ type, value, onChange, required, className, children, ...props }: CustomLinkProps) {
-  const defaultCn = "px-2 border-2 border-primary dark:border-primary-dark text-background-dark dark:text-background"
-  const cn = className ? ` ${className} ` + defaultCn : defaultCn;
-  return (
-    <Input type={type} value={value} onChange={onChange} required={required} {...props} className={cn}>
-      {children}
-    </Input>
-  );
+export default function CustomInput({
+  className,
+  size,
+  children,
+  ...props
+}: CustomInputProps) {
+  const defaultCn =
+    "px-2 border-2 border-primary dark:border-primary-dark text-background-dark dark:text-background";
+  const cn = className ? `${className} ${defaultCn}` : defaultCn;
+
+  return <Input size={size} {...props} className={cn}>{children}</Input>;
 }

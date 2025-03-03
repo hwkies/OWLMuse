@@ -12,6 +12,7 @@ import CustomInput from '@/components/ui/custom-input';
 const SignUp = () => {
   const {
     username,
+    email,
     password,
     passwordConfirmation,
     showPassword,
@@ -25,7 +26,8 @@ const SignUp = () => {
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h2 className="text-2xl">Welcome to OWLMuse!</h2>
       <h3>Please sign up to continue.</h3>
-      <form className="flex flex-col items-left">
+      {err && <p className="text-red-500">{err}</p>}
+      <form className="flex flex-col items-left" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username</label>
           <CustomInput
@@ -33,6 +35,17 @@ const SignUp = () => {
             id="username"
             value={username}
             onChange={e => handleInputChange(e, 'username')}
+            required
+            className="rounded-xl"
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <CustomInput
+            type="email"
+            id="email"
+            value={email}
+            onChange={e => handleInputChange(e, 'email')}
             required
             className="rounded-xl"
           />
@@ -59,16 +72,16 @@ const SignUp = () => {
             className="rounded-xl"
           />
         </div>
-      </form>
-      <div className="flex flex-col items-center">
-        <div>
-          <label htmlFor='showPasswordToggle'>{showPassword ? "Hide Password" : "Show Password"}</label>
-          <input id='showPasswordToggle' type='checkbox' value={showPassword} onClick={togglePasswordVisibility} className="ml-2" />
+        <div className="flex flex-col items-center">
+          <div>
+            <label htmlFor='showPasswordToggle'>{showPassword ? "Hide Password" : "Show Password"}</label>
+            <input id='showPasswordToggle' type='checkbox' onClick={togglePasswordVisibility} className="ml-2" />
+          </div>
+          <button type="submit" className="text-xl border-2 rounded-lg px-2">
+            Sign Up
+          </button>
         </div>
-        <button type="submit" className="text-xl border-2 rounded-lg px-2">
-          Sign Up
-        </button>
-      </div>
+      </form>
       <div>
         <span>Have an account? </span>
         <Link href="/login" className="text-blue-700 dark:text-blue-300">Login here.</Link>

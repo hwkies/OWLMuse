@@ -3,10 +3,10 @@
 import axios from 'axios';
 import { UserPublic } from '../types';
 
-const USER_API_URL = `${process.env.REACT_APP_SERVER_URL}/user`;
+const USER_API_URL = `http://localhost:8000/api/users`;
 
 const getUserByUsername = async (username: string): Promise<UserPublic> => {
-  const res = await axios.get(`${USER_API_URL}/get_user/${username}`);
+  const res = await axios.get(`${USER_API_URL}/get_user/${username}/`);
   if (res.status !== 200) {
     throw new Error('Error when fetching users');
   }
@@ -15,20 +15,20 @@ const getUserByUsername = async (username: string): Promise<UserPublic> => {
 
 const createUser = async (userData: { username: string; email: string; password: string }): Promise<UserPublic> => {
   try {
-    const res = await axios.post(`${USER_API_URL}/create_user`, userData);
+    const res = await axios.post(`${USER_API_URL}/create_user/`, userData);
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
       throw new Error(`Error while signing up: ${error.response.data}`);
     } else {
-      throw new Error('Error while signing up');
+      throw new Error('Error while signing up' + error);
     }
   }
 };
 
 const loginUser = async (userData: { username: string; password: string }): Promise<UserPublic> => {
   try {
-    const res = await axios.post(`${USER_API_URL}/login`, userData);
+    const res = await axios.post(`${USER_API_URL}/login/`, userData);
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
@@ -40,7 +40,7 @@ const loginUser = async (userData: { username: string; password: string }): Prom
 };
 
 const deleteUser = async (username: string): Promise<UserPublic> => {
-  const res = await axios.delete(`${USER_API_URL}/delete_user/${username}`);
+  const res = await axios.delete(`${USER_API_URL}/delete_user/${username}/`);
   if (res.status !== 200) {
     throw new Error('Error when deleting user');
   }
@@ -48,7 +48,7 @@ const deleteUser = async (username: string): Promise<UserPublic> => {
 };
 
 const resetPassword = async (username: string, password: string): Promise<UserPublic> => {
-  const res = await axios.patch(`${USER_API_URL}/update_user`, { username, password });
+  const res = await axios.patch(`${USER_API_URL}/update_user/`, { username, password });
   if (res.status !== 200) {
     throw new Error('Error when resetting password');
   }
@@ -56,7 +56,7 @@ const resetPassword = async (username: string, password: string): Promise<UserPu
 };
 
 const updateEmail = async (username: string, email: string): Promise<UserPublic> => {
-  const res = await axios.patch(`${USER_API_URL}/update_user`, { username, email });
+  const res = await axios.patch(`${USER_API_URL}/update_user/`, { username, email });
   if (res.status !== 200) {
     throw new Error('Error when updating email');
   }
